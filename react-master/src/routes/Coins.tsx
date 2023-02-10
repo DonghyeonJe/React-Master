@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { fetchCoins } from "../api";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atom";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -15,8 +20,9 @@ const Header = styled.header`
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
+
   border-radius: 15px;
   margin-bottom: 10px;
   a {
@@ -45,8 +51,17 @@ const Img = styled.img`
   height: 35px;
   margin-right: 10px;
 `;
-
-interface CoinInterface {
+const DarkModeBtn = styled.button`
+  position: absolute;
+  right: 0;
+  bottom: 2rem;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: ${(props) => props.theme.textColor};
+  cursor: pointer;
+`;
+interface ICoin {
   id: string;
   name: string;
   symbol: string;
@@ -56,26 +71,43 @@ interface CoinInterface {
   type: string;
 }
 function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("https://api.coinpaprika.com/v1/coins");
-      const json = await response.json();
-      setCoins(json.slice(0, 100));
-      setLoading(false);
-    })();
-  }, []);
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+
+  const [darkBtn, setDarkBtn] = useState(true);
+
+  const toggleDarkAtom = () => {
+    setDarkAtom((current) => !current);
+    setDarkBtn((current) => !current);
+    return null;
+  };
+
+  const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
+  // const [coins, setCoins] = useState<CoinInterface[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");
+  //     const json = await response.json();
+  //     setCoins(json.slice(0, 100));
+  //     setLoading(false);
+  //   })();
+  // }, []);
   return (
     <Container>
+      <Helmet>
+        <title>Coin</title>
+      </Helmet>
       <Header>
         <Title>코인</Title>
+        <DarkModeBtn onClick={toggleDarkAtom}>
+          {darkBtn ? "🏙️ 라이트모드" : "🌃 다크모드"}
+        </DarkModeBtn>
       </Header>
-      {loading ? (
+      {isLoading ? (
         <Loader>Loading...</Loader>
       ) : (
         <CoinsList>
-          {coins.map((coin) => (
+          {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
               <Link
                 to={{
