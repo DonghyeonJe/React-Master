@@ -141,7 +141,7 @@ interface PriceData {
   last_updated: string;
   quotes: {
     USD: {
-      ath_date: string;
+      ath_date: number;
       ath_price: number;
       market_cap: number;
       market_cap_change_24h: number;
