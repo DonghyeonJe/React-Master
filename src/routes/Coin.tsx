@@ -206,7 +206,7 @@ function Coin() {
       </Helmet>
       <Title>
         <Back>
-          <Link to="/">&larr;</Link>
+          <Link to={process.env.PUBLIC_URL + "/"}>&larr;</Link>
         </Back>
         {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
       </Title>
@@ -243,19 +243,23 @@ function Coin() {
 
           <Tabs>
             <Tab isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>Chart</Link>
+              <Link to={`${process.env.PUBLIC_URL}/${coinId}/chart`}>
+                Chart
+              </Link>
             </Tab>
             <Tab isActive={priceMatch !== null}>
-              <Link to={`/${coinId}/price`}>Price</Link>
+              <Link to={`${process.env.PUBLIC_URL}/${coinId}/price`}>
+                Price
+              </Link>
             </Tab>
           </Tabs>
 
           <Switch>
-            <Route path={`/${coinId}/price`}>
+            <Route path={`${process.env.PUBLIC_URL}/${coinId}/price`}>
               <Price tickersData={tickersData} />
             </Route>
 
-            <Route path={`/${coinId}/chart`}>
+            <Route path={`${process.env.PUBLIC_URL}/${coinId}/chart`}>
               <Chart coinId={coinId} />
             </Route>
           </Switch>
