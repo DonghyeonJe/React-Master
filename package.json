@@ -12,7 +12,6 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "apexcharts": "^3.37.0",
-    "gh-pages": "^5.0.0",
     "install": "^0.13.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -52,11 +51,12 @@
       "last 1 safari version"
     ]
   },
+  "hompage": "https://donghyeonje.github.io/React-Master/",
   "devDependencies": {
     "@tanstack/react-query-devtools": "^4.24.4",
     "@types/react-helmet": "^6.1.6",
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.26"
-  },
-  "hompage": "https://DonghyeonJe.github.io/React-Master"
+    "@types/styled-components": "^5.1.26",
+    "gh-pages": "^5.0.0"
+  }
 }
