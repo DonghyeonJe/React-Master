@@ -52,11 +52,11 @@
       "last 1 safari version"
     ]
   },
-  "hompage": "https://DonghyeonJe.github.io/React-Master",
   "devDependencies": {
     "@tanstack/react-query-devtools": "^4.24.4",
     "@types/react-helmet": "^6.1.6",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26"
-  }
+  },
+  "hompage": "https://DonghyeonJe.github.io/React-Master/"
 }
