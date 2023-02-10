@@ -12,6 +12,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "apexcharts": "^3.37.0",
+    "gh-pages": "^5.0.0",
     "install": "^0.13.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -26,6 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +52,7 @@
       "last 1 safari version"
     ]
   },
+  "hompage": "https://DonghyeonJe.github.io/React-Master",
   "devDependencies": {
     "@tanstack/react-query-devtools": "^4.24.4",
     "@types/react-helmet": "^6.1.6",
