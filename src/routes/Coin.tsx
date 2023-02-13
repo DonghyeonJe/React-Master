@@ -141,7 +141,7 @@ interface PriceData {
   last_updated: string;
   quotes: {
     USD: {
-      ath_date: number;
+      ath_date: string;
       ath_price: number;
       market_cap: number;
       market_cap_change_24h: number;
@@ -226,7 +226,7 @@ function Coin() {
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>
-              <span>{tickersData?.quotes.USD.price.toFixed(3)}</span>
+              <span>{tickersData?.quotes?.USD?.price?.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
